@@ -11,6 +11,7 @@ openai.api_key = os.environ.get('OPENAI_API_KEY')
 
 
 def generate_answer(question):
+    print(f"question {question}")
     model_engine = "text-davinci-002"
     prompt = (f"Q: {question}\nA:")
 
@@ -37,8 +38,8 @@ def generate_answer(question):
 
 def chatgpt():
     incoming_que = request.values.get('Body', '').lower()
-    print(incoming_que)
-    answer = answer = generate_answer(incoming_que)
+    print(f"test: {incoming_que}")
+    answer = answer = generate_answer("how old are you?")
     bot_resp = MessagingResponse()
     msg = bot_resp.message()
     msg.body(answer)
@@ -47,5 +48,4 @@ def chatgpt():
 
 
 if __name__ == '__main__':
-    print('here')
     app.run(host='0.0.0.0', debug=True, port=5000)
