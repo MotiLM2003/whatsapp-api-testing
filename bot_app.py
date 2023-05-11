@@ -3,6 +3,7 @@ import openai
 from twilio.twiml.messaging_response import MessagingResponse
 from dotenv import load_dotenv
 import os
+import json
 
 load_dotenv()
 
@@ -35,11 +36,11 @@ def generate_answer(question):
 
 
 @app.route('/chatgpt', methods=['POST'])
-
 def chatgpt():
-    incoming_que = request.values.get('Body', '').lower()
-    print(f"test: {incoming_que}")
-    answer = answer = generate_answer("how old are you?")
+    incoming_data = request.get_json()
+    
+    incoming_que =incoming_data["question"]
+    answer = answer = generate_answer(incoming_que)
     bot_resp = MessagingResponse()
     msg = bot_resp.message()
     msg.body(answer)
