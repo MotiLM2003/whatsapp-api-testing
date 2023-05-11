@@ -38,7 +38,7 @@ def generate_answer(question):
 @app.route('/chatgpt', methods=['POST'])
 def chatgpt():
     incoming_data = request.get_json()
-    incoming_que =incoming_data["question"]
+    incoming_que = "How are you?"
     answer = generate_answer(incoming_que)
     bot_resp = MessagingResponse()
     msg = bot_resp.message()
