@@ -4,7 +4,6 @@ from twilio.twiml.messaging_response import MessagingResponse
 from dotenv import load_dotenv
 import os
 
-
 load_dotenv()
 
 app = Flask(__name__)
@@ -36,11 +35,12 @@ def generate_answer(question):
 
 
 @app.route('/chatgpt', methods=['POST'])
+
 def chatgpt():
-    incoming_data = request.get_json()
-    
-    incoming_que =incoming_data["question"]
-    answer = answer = generate_answer(incoming_que)
+    incoming_que = request.values.get('Body', '').lower()
+   
+    print(f"test: { request.values.get('Body', '').lower()}")
+    answer = answer = generate_answer("how old are you?")
     bot_resp = MessagingResponse()
     msg = bot_resp.message()
     msg.body(answer)
