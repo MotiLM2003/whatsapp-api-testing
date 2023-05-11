@@ -39,7 +39,8 @@ def generate_answer(question):
 def chatgpt():
     # incoming_data = request.get_json()
     incoming_que = "How are you?"
-    answer = generate_answer(incoming_que)
+    answer = 'im fine thank you' 
+    #  generate_answer(incoming_que)
     bot_resp = MessagingResponse()
     msg = bot_resp.message()
     msg.body(answer)
